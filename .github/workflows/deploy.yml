@@ -10,13 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Test connectivity to server
+      - name: Test variable
         env:
-          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          MY_VAR: ${{ vars.SERVER_HOST }}
         run: |
-          echo "Host: $SERVER_HOST"
-          ping -c 3 $SERVER_HOST
-          ssh-keyscan -H $SERVER_HOST
+          if [ -z "$MY_VAR" ]; then
+            echo "Error: MY_VAR is empty"
+            exit 1
+          else
+            echo "Success: MY_VAR has length ${#MY_VAR}"
+          fi
+
+      - name: Test connectivity to server
+        run: |
+          echo "Host: ${{ vars.SERVER_HOST }}"
+          ping -c 3 ${{ vars.SERVER_HOST }}
+          ssh-keyscan -H ${{ vars.SERVER_HOST }}
 
       - name: Checkout code
         uses: actions/checkout@v4
