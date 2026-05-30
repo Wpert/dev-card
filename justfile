@@ -3,9 +3,7 @@ clean:
     rm -f package-lock.json
 
 build:
-    npx pug src/pug/ -o dist/ -P
-    npx tsc
-    npx @tailwindcss/cli -i src/styles/main.css -o dist/main.css --minify
+    npx run build
     cp assets/* dist/
 
 cleanbuild: clean build

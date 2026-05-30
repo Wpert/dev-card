@@ -17,13 +17,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Test connectivity to server
+        run: |
+          ping -c 3 ${{ secrets.DEPLOY_HOST }}
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }}
       
       - name: Install deps
         run: |
           npm install --save-dev typescript pug-cli tailwindcss@3 postcss autoprefixer
       
       - name: Build site
-        run: just build
+        run: npm run build
       
       - name: Deploy to server via rsync
         uses: burnett01/rsync-deployments@7.0.1
