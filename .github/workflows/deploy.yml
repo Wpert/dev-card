@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Test connectivity to server
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        run: |
+          echo "Host: $SERVER_HOST"
+          ping -c 3 $SERVER_HOST
+          ssh-keyscan -H $SERVER_HOST
+
       - name: Checkout code
         uses: actions/checkout@v4
       
@@ -17,11 +25,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Test connectivity to server
-        run: |
-          ping -c 3 ${{ secrets.DEPLOY_HOST }}
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }}
       
       - name: Install deps
         run: |
