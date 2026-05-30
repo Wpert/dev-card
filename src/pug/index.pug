@@ -1,0 +1,58 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Vpert | SWE
+    link(rel="stylesheet" href="main.css")
+    link(href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet")
+    style.
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #18181b;
+        --accent-color: #2563eb;
+      }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+      }
+
+  body
+    header
+      canvas#art-canvas(width="600" height="600")
+      .hero-content
+        h1 Vpert
+        p.subtitle Software Engineer &<br>Graphics Engine Enthusiast
+      .scroll-hint ↓ Листай вниз
+
+    img#source-image(src="ani-17.jpg" style="display:none;" crossorigin="anonymous")
+
+    .content-wrapper
+      section#about
+        h2 Обо мне
+        p 
+          | Я студент последнего курса CS MEPhI. Занимаюсь бэкендом, бывший разработчик инфраструктуры Яндекса.
+          | В свободное время увлекаюсь компьютерной графикой и алгоритмами.
+        p 
+          | Мой блог о жизни, работе и разработке доступен на 
+          a(href="https://wpert.github.io/vblog") GitHub Pages
+          | .
+
+      section#skills
+        h2 Стек технологий
+        .tech-stack
+          each tech in ['C++', 'Python', 'WebGL / GLSL', 'Ray Tracing', 'Git', 'Linux']
+            span.tag= tech
+
+      section#contact
+        h2 Контакты
+        p Открыт к предложениям и коллаборациям.
+        p
+          | Email: vpert@vk.com<br>
+          | GitHub: 
+          a(href="https://github.com/wpert") github.com/wpert
+
+    script(type="module" src="main.js")

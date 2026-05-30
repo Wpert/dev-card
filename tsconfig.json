@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src/ts",
+    "target": "ES2020",
+    "module": "ES2015",
+    "strict": true
+  },
+  "include": ["src/ts/**/*"]
+}
